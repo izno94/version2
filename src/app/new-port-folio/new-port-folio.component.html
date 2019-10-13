@@ -1,0 +1,151 @@
+<form #f="ngForm" (submit)="onSubmitNewPortFolio($event,f)">
+  
+
+  <div class="form-group row">
+    <label for="titre" class="col-sm-2 col-form-label">Titre</label>
+    <div class="col-sm-10">
+      <input type="text"
+             class="form-control"
+             placeholder="Remplir"
+             name="titre"
+             ngModel
+             #titre ="ngModel"
+             minlength="2"
+             maxlength="50"
+             required>
+    <div class="alert alert-danger" *ngIf="titre.touched && !titre.valid">
+                <div *ngIf="titre.errors.required">le champ titre est obligatoire </div>
+                <div *ngIf="titre.errors.minlength">2 caracteres minimum</div>
+     </div>
+
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="contenu" class="col-sm-2 col-form-label">Contenu</label>
+    <div class="col-sm-10">
+      <input type="text"
+             class="form-control"
+             placeholder="Remplir"
+             name="contenu"
+             ngModel
+             #contenu ="ngModel"
+             minlength="1"
+             maxlength="2500"
+             required>
+             <div class="alert alert-danger" *ngIf="titre.touched && !titre.valid">
+                <div *ngIf="contenu.errors.required">le champ titre est obligatoire </div>
+                <div *ngIf="contenu.errors.minlength">2 caracteres minimum</div>
+     </div>
+
+    </div>
+  </div>
+
+<div>
+  <div class="form-group" >
+  <label for="categories">Catégorie :</label>
+  </div>
+
+  <select class="selectpicker" 
+          name="categories"
+          multiple title ="choix multiple"
+          ngModel
+          #categories="ngModel"
+          required>
+      <option value="Tragédie">Tragédie</option>
+      <option value="Comédie">Comédie</option>
+      <option value="Thriller">Thriller</option>
+      <option value="Cyberpunk">Cyberpunk</option>
+      <option value="Roman">Roman</option>
+    </select>
+</div>
+
+  <fieldset>
+    <div class="row">
+      <legend class="col-form-label col-sm-2 pt-0">Status</legend>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <input class="form-check-input" 
+                 type="radio" 
+                 id="gridRadios1" 
+                 value="true" 
+                 checked
+                 name="estPublie"
+                 ngModel
+                 #estPublie="ngModel"
+                 required>
+          <label class="form-check-label" for="gridRadios1">
+            Publié
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" 
+                 type="radio"  
+                 id="gridRadios2" 
+                 value="false"
+                 name="estPublie"
+                 ngModel
+                 #estPublie="ngModel"
+                 required>
+          <label class="form-check-label" for="gridRadios2">
+            Brouillon
+          </label>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <div><label>Date de création:</label></div>
+  <input 
+    type="date"
+    name="date_creation"
+    value="CurrentTime"
+    ngModel
+    #date_creation="ngModel"
+    required>
+
+<div>
+    <div><label for="">Nom de l'auteur:</label></div>
+   <input type="text"
+          class="form-control"
+          placeholder="Remplir"
+          name="nom_auteur"
+          ngModel
+          #nom_auteur ="ngModel"
+          minlength="1"
+          maxlength="100"
+          required>
+</div> 
+
+<div>
+  <div><label for="">Email:</label></div>
+ <input type="email"
+        class="form-control"
+        placeholder="Remplir"
+        name="email_auteur"
+        ngModel
+        #email_auteur ="ngModel"
+        minlength="5"
+        maxlength="200"
+        required>
+</div>
+
+
+<hr>
+
+<div class="form-group">
+  <input 
+      type="submit" 
+      value="Créer" 
+      class="btn btn-light"
+      [disabled]="!f.valid"
+      >   
+</div>
+
+<div class="alert alert-success" *ngIf="isOk">
+    Nouvel article créé !!!
+</div>
+<hr>
+</form>
+{{ f.value| json }}
+
+

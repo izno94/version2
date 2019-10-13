@@ -1,0 +1,22 @@
+<div>
+        <a routerLink="/connexion" class="btn btn-primary">gestion-users</a>
+      </div>
+      <div>
+        <article *ngFor="let gestion of users">
+            <h2>
+                <a [routerLink]="['/gestion', gestion._id]">
+                    {{gestion.nom}}
+                </a>
+            </h2>
+                <p>
+                    {{gestion.prenom}}
+                </p>
+                <hr>
+                <button id="aze" class="btn btn-danger" (click) = "onClickDelete(gestion)" >Supprimer</button>
+                 &nbsp;
+                <button class="btn btn-warning"
+                (click)="onClickUpdate(gestion)">
+                        Mis a jour
+                </button>
+            </article>
+      </div>
